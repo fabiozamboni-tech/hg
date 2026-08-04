@@ -4,14 +4,19 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
-import { SiteLayout } from "../components/site/SiteLayout";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import { Toaster } from "@/components/ui/sonner";
+import { ScrollProgress, SmoothScroll } from "@/components/motion";
+import { CmsProvider } from "@/lib/cms/CmsProvider";
+import { CmsToolbar } from "@/components/cms/CmsToolbar";
+import { VisualEditLayer } from "@/components/cms/VisualEditLayer";
 
 function NotFoundComponent() {
   return (
@@ -38,9 +43,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -78,20 +80,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "theme-color", content: "#2B1810" },
-      { name: "author", content: "Que Brigadeiro — Marina De David" },
+      { title: "Instituto Hércules Galló — Museu de território de Galópolis" },
+      { name: "description", content: "Instituição cultural que preserva a memória da imigração italiana, da arquitetura basáltica e da indústria têxtil em Galópolis, Caxias do Sul — RS." },
       { property: "og:type", content: "website" },
-      { property: "og:locale", content: "pt_BR" },
+      { property: "og:site_name", content: "Instituto Hércules Galló" },
+      { property: "og:title", content: "Instituto Hércules Galló — Museu de território de Galópolis" },
+      { property: "og:description", content: "Preservando a imigração italiana, o basalto e a indústria têxtil da Serra Gaúcha." },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      {
+        rel: "stylesheet",
+        href: appCss,
+      },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fira+Sans:wght@300;400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap",
       },
     ],
   }),
@@ -101,9 +108,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
-function RootShell({ children }: { children: ReactNode }) {
+function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
@@ -117,12 +124,34 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  // O editor visual (/editor) tem chrome próprio: sem header/rodapé do site.
+  const bare = useRouterState({ select: (s) => s.location.pathname.startsWith("/editor") });
+
+  if (bare) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <CmsProvider>
+          <Outlet />
+          <Toaster />
+        </CmsProvider>
+      </QueryClientProvider>
+    );
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SiteLayout>
-        <Outlet />
-      </SiteLayout>
+      <CmsProvider>
+        <SmoothScroll />
+        <ScrollProgress />
+        <Header />
+        <main className="min-h-dvh pt-20">
+          <Outlet />
+        </main>
+        <Footer />
+        <CmsToolbar />
+        <VisualEditLayer />
+        <Toaster />
+      </CmsProvider>
     </QueryClientProvider>
   );
 }
