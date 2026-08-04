@@ -1,0 +1,139 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --font-display: "DM Serif Display", ui-serif, Georgia, serif;
+  --font-sans: "Fira Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-cream: var(--cream);
+  --color-cocoa: var(--cocoa);
+  --color-gold: var(--gold);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Chocolate & Creme palette */
+  --cream: oklch(0.955 0.014 78);           /* #F5EFE6 */
+  --cream-warm: oklch(0.895 0.028 74);      /* #E8D9C4 */
+  --cocoa: oklch(0.42 0.065 55);            /* #6B4423 */
+  --cocoa-deep: oklch(0.22 0.035 40);       /* #2B1810 */
+  --gold: oklch(0.76 0.115 85);             /* #C9A84C */
+
+  --background: var(--cream);
+  --foreground: var(--cocoa-deep);
+  --card: oklch(0.985 0.008 78);
+  --card-foreground: var(--cocoa-deep);
+  --popover: oklch(0.985 0.008 78);
+  --popover-foreground: var(--cocoa-deep);
+  --primary: var(--cocoa);
+  --primary-foreground: var(--cream);
+  --secondary: var(--cream-warm);
+  --secondary-foreground: var(--cocoa-deep);
+  --muted: oklch(0.92 0.02 76);
+  --muted-foreground: oklch(0.44 0.03 50);
+  --accent: var(--gold);
+  --accent-foreground: var(--cocoa-deep);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: var(--cream);
+  --border: oklch(0.86 0.025 75);
+  --input: oklch(0.86 0.025 75);
+  --ring: var(--cocoa);
+}
+
+.dark {
+  --background: var(--cocoa-deep);
+  --foreground: var(--cream);
+  --card: oklch(0.28 0.04 45);
+  --card-foreground: var(--cream);
+  --popover: oklch(0.28 0.04 45);
+  --popover-foreground: var(--cream);
+  --primary: var(--gold);
+  --primary-foreground: var(--cocoa-deep);
+  --secondary: oklch(0.32 0.04 45);
+  --secondary-foreground: var(--cream);
+  --muted: oklch(0.3 0.03 45);
+  --muted-foreground: oklch(0.75 0.02 75);
+  --accent: var(--gold);
+  --accent-foreground: var(--cocoa-deep);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: var(--gold);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background: var(--gold);
+    color: var(--cocoa-deep);
+  }
+}
+
+/* Lenis smooth-scroll base */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+@utility text-balance { text-wrap: balance; }
+@utility text-pretty { text-wrap: pretty; }
+
+@utility grain-bg {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(oklch(0.22 0.035 40 / 0.06) 1px, transparent 1px);
+    background-size: 3px 3px;
+    mix-blend-mode: multiply;
+    opacity: 0.4;
+  }
+}
