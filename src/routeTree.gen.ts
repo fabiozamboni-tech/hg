@@ -9,20 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SobreRouteImport } from './routes/sobre'
-import { Route as EventosRouteImport } from './routes/eventos'
+import { Route as RestauracaoRouteImport } from './routes/restauracao'
+import { Route as MuseuRouteImport } from './routes/museu'
+import { Route as InstitutoRouteImport } from './routes/instituto'
+import { Route as HerculesGalloRouteImport } from './routes/hercules-gallo'
+import { Route as GalopolisRouteImport } from './routes/galopolis'
+import { Route as EditorRouteImport } from './routes/editor'
 import { Route as ContatoRouteImport } from './routes/contato'
-import { Route as CardapioRouteImport } from './routes/cardapio'
+import { Route as AtividadesRouteImport } from './routes/atividades'
+import { Route as AgendaRouteImport } from './routes/agenda'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as NovidadesIndexRouteImport } from './routes/novidades.index'
+import { Route as GaleriaIndexRouteImport } from './routes/galeria.index'
+import { Route as NovidadesIdRouteImport } from './routes/novidades.$id'
+import { Route as GaleriaIdRouteImport } from './routes/galeria.$id'
 
-const SobreRoute = SobreRouteImport.update({
-  id: '/sobre',
-  path: '/sobre',
+const RestauracaoRoute = RestauracaoRouteImport.update({
+  id: '/restauracao',
+  path: '/restauracao',
   getParentRoute: () => rootRouteImport,
 } as any)
-const EventosRoute = EventosRouteImport.update({
-  id: '/eventos',
-  path: '/eventos',
+const MuseuRoute = MuseuRouteImport.update({
+  id: '/museu',
+  path: '/museu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstitutoRoute = InstitutoRouteImport.update({
+  id: '/instituto',
+  path: '/instituto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HerculesGalloRoute = HerculesGalloRouteImport.update({
+  id: '/hercules-gallo',
+  path: '/hercules-gallo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalopolisRoute = GalopolisRouteImport.update({
+  id: '/galopolis',
+  path: '/galopolis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorRoute = EditorRouteImport.update({
+  id: '/editor',
+  path: '/editor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContatoRoute = ContatoRouteImport.update({
@@ -30,9 +60,19 @@ const ContatoRoute = ContatoRouteImport.update({
   path: '/contato',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CardapioRoute = CardapioRouteImport.update({
-  id: '/cardapio',
-  path: '/cardapio',
+const AtividadesRoute = AtividadesRouteImport.update({
+  id: '/atividades',
+  path: '/atividades',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgendaRoute = AgendaRouteImport.update({
+  id: '/agenda',
+  path: '/agenda',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -40,59 +80,193 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NovidadesIndexRoute = NovidadesIndexRouteImport.update({
+  id: '/novidades/',
+  path: '/novidades/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GaleriaIndexRoute = GaleriaIndexRouteImport.update({
+  id: '/galeria/',
+  path: '/galeria/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NovidadesIdRoute = NovidadesIdRouteImport.update({
+  id: '/novidades/$id',
+  path: '/novidades/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GaleriaIdRoute = GaleriaIdRouteImport.update({
+  id: '/galeria/$id',
+  path: '/galeria/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/cardapio': typeof CardapioRoute
+  '/admin': typeof AdminRoute
+  '/agenda': typeof AgendaRoute
+  '/atividades': typeof AtividadesRoute
   '/contato': typeof ContatoRoute
-  '/eventos': typeof EventosRoute
-  '/sobre': typeof SobreRoute
+  '/editor': typeof EditorRoute
+  '/galopolis': typeof GalopolisRoute
+  '/hercules-gallo': typeof HerculesGalloRoute
+  '/instituto': typeof InstitutoRoute
+  '/museu': typeof MuseuRoute
+  '/restauracao': typeof RestauracaoRoute
+  '/galeria/$id': typeof GaleriaIdRoute
+  '/novidades/$id': typeof NovidadesIdRoute
+  '/galeria/': typeof GaleriaIndexRoute
+  '/novidades/': typeof NovidadesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/cardapio': typeof CardapioRoute
+  '/admin': typeof AdminRoute
+  '/agenda': typeof AgendaRoute
+  '/atividades': typeof AtividadesRoute
   '/contato': typeof ContatoRoute
-  '/eventos': typeof EventosRoute
-  '/sobre': typeof SobreRoute
+  '/editor': typeof EditorRoute
+  '/galopolis': typeof GalopolisRoute
+  '/hercules-gallo': typeof HerculesGalloRoute
+  '/instituto': typeof InstitutoRoute
+  '/museu': typeof MuseuRoute
+  '/restauracao': typeof RestauracaoRoute
+  '/galeria/$id': typeof GaleriaIdRoute
+  '/novidades/$id': typeof NovidadesIdRoute
+  '/galeria': typeof GaleriaIndexRoute
+  '/novidades': typeof NovidadesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/cardapio': typeof CardapioRoute
+  '/admin': typeof AdminRoute
+  '/agenda': typeof AgendaRoute
+  '/atividades': typeof AtividadesRoute
   '/contato': typeof ContatoRoute
-  '/eventos': typeof EventosRoute
-  '/sobre': typeof SobreRoute
+  '/editor': typeof EditorRoute
+  '/galopolis': typeof GalopolisRoute
+  '/hercules-gallo': typeof HerculesGalloRoute
+  '/instituto': typeof InstitutoRoute
+  '/museu': typeof MuseuRoute
+  '/restauracao': typeof RestauracaoRoute
+  '/galeria/$id': typeof GaleriaIdRoute
+  '/novidades/$id': typeof NovidadesIdRoute
+  '/galeria/': typeof GaleriaIndexRoute
+  '/novidades/': typeof NovidadesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cardapio' | '/contato' | '/eventos' | '/sobre'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/agenda'
+    | '/atividades'
+    | '/contato'
+    | '/editor'
+    | '/galopolis'
+    | '/hercules-gallo'
+    | '/instituto'
+    | '/museu'
+    | '/restauracao'
+    | '/galeria/$id'
+    | '/novidades/$id'
+    | '/galeria/'
+    | '/novidades/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cardapio' | '/contato' | '/eventos' | '/sobre'
-  id: '__root__' | '/' | '/cardapio' | '/contato' | '/eventos' | '/sobre'
+  to:
+    | '/'
+    | '/admin'
+    | '/agenda'
+    | '/atividades'
+    | '/contato'
+    | '/editor'
+    | '/galopolis'
+    | '/hercules-gallo'
+    | '/instituto'
+    | '/museu'
+    | '/restauracao'
+    | '/galeria/$id'
+    | '/novidades/$id'
+    | '/galeria'
+    | '/novidades'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/agenda'
+    | '/atividades'
+    | '/contato'
+    | '/editor'
+    | '/galopolis'
+    | '/hercules-gallo'
+    | '/instituto'
+    | '/museu'
+    | '/restauracao'
+    | '/galeria/$id'
+    | '/novidades/$id'
+    | '/galeria/'
+    | '/novidades/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CardapioRoute: typeof CardapioRoute
+  AdminRoute: typeof AdminRoute
+  AgendaRoute: typeof AgendaRoute
+  AtividadesRoute: typeof AtividadesRoute
   ContatoRoute: typeof ContatoRoute
-  EventosRoute: typeof EventosRoute
-  SobreRoute: typeof SobreRoute
+  EditorRoute: typeof EditorRoute
+  GalopolisRoute: typeof GalopolisRoute
+  HerculesGalloRoute: typeof HerculesGalloRoute
+  InstitutoRoute: typeof InstitutoRoute
+  MuseuRoute: typeof MuseuRoute
+  RestauracaoRoute: typeof RestauracaoRoute
+  GaleriaIdRoute: typeof GaleriaIdRoute
+  NovidadesIdRoute: typeof NovidadesIdRoute
+  GaleriaIndexRoute: typeof GaleriaIndexRoute
+  NovidadesIndexRoute: typeof NovidadesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sobre': {
-      id: '/sobre'
-      path: '/sobre'
-      fullPath: '/sobre'
-      preLoaderRoute: typeof SobreRouteImport
+    '/restauracao': {
+      id: '/restauracao'
+      path: '/restauracao'
+      fullPath: '/restauracao'
+      preLoaderRoute: typeof RestauracaoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/eventos': {
-      id: '/eventos'
-      path: '/eventos'
-      fullPath: '/eventos'
-      preLoaderRoute: typeof EventosRouteImport
+    '/museu': {
+      id: '/museu'
+      path: '/museu'
+      fullPath: '/museu'
+      preLoaderRoute: typeof MuseuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instituto': {
+      id: '/instituto'
+      path: '/instituto'
+      fullPath: '/instituto'
+      preLoaderRoute: typeof InstitutoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hercules-gallo': {
+      id: '/hercules-gallo'
+      path: '/hercules-gallo'
+      fullPath: '/hercules-gallo'
+      preLoaderRoute: typeof HerculesGalloRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galopolis': {
+      id: '/galopolis'
+      path: '/galopolis'
+      fullPath: '/galopolis'
+      preLoaderRoute: typeof GalopolisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editor': {
+      id: '/editor'
+      path: '/editor'
+      fullPath: '/editor'
+      preLoaderRoute: typeof EditorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contato': {
@@ -102,11 +276,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContatoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/cardapio': {
-      id: '/cardapio'
-      path: '/cardapio'
-      fullPath: '/cardapio'
-      preLoaderRoute: typeof CardapioRouteImport
+    '/atividades': {
+      id: '/atividades'
+      path: '/atividades'
+      fullPath: '/atividades'
+      preLoaderRoute: typeof AtividadesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agenda': {
+      id: '/agenda'
+      path: '/agenda'
+      fullPath: '/agenda'
+      preLoaderRoute: typeof AgendaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -116,26 +304,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/novidades/': {
+      id: '/novidades/'
+      path: '/novidades'
+      fullPath: '/novidades/'
+      preLoaderRoute: typeof NovidadesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galeria/': {
+      id: '/galeria/'
+      path: '/galeria'
+      fullPath: '/galeria/'
+      preLoaderRoute: typeof GaleriaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/novidades/$id': {
+      id: '/novidades/$id'
+      path: '/novidades/$id'
+      fullPath: '/novidades/$id'
+      preLoaderRoute: typeof NovidadesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galeria/$id': {
+      id: '/galeria/$id'
+      path: '/galeria/$id'
+      fullPath: '/galeria/$id'
+      preLoaderRoute: typeof GaleriaIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CardapioRoute: CardapioRoute,
+  AdminRoute: AdminRoute,
+  AgendaRoute: AgendaRoute,
+  AtividadesRoute: AtividadesRoute,
   ContatoRoute: ContatoRoute,
-  EventosRoute: EventosRoute,
-  SobreRoute: SobreRoute,
+  EditorRoute: EditorRoute,
+  GalopolisRoute: GalopolisRoute,
+  HerculesGalloRoute: HerculesGalloRoute,
+  InstitutoRoute: InstitutoRoute,
+  MuseuRoute: MuseuRoute,
+  RestauracaoRoute: RestauracaoRoute,
+  GaleriaIdRoute: GaleriaIdRoute,
+  NovidadesIdRoute: NovidadesIdRoute,
+  GaleriaIndexRoute: GaleriaIndexRoute,
+  NovidadesIndexRoute: NovidadesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
